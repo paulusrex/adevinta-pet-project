@@ -47,18 +47,20 @@ export default class HTTPMovieRepository extends MovieRepository {
   async detail({id}) {
     const API_HOST = this._config.get('API_HOST')
     const API_KEY = this._config.get('API_KEY')
+    let data
     try {
-      const {data} = await this._fetcher.get(
+      const res = await this._fetcher.get(
         `${API_HOST}/movie/${id}?api_key=${API_KEY}`
       )
-      if (data.status_code === 6) throw this._notFoundMovieErrorFactory()
-      const movie = this._movieEntityFactory({
-        id: data.result.id,
-        title: data.result.title
-      })
-      return movie
+      data = res.data
     } catch (error) {
-      if (error) throw this._genericMovieErrorFactory()
+      throw this._genericMovieErrorFactory()
     }
+    if (data.status_code === 6) throw this._notFoundMovieErrorFactory()
+    const movie = this._movieEntityFactory({
+      id: data.id,
+      title: data.title
+    })
+    return movie
   }
 }
