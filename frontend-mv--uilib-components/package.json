@@ -26,7 +26,7 @@
   "license": "MIT",
   "devDependencies": {
     "@s-ui/deploy": "2",
-    "@s-ui/precommit": "2",
+    "@s-ui/precommit": "^2.6.0",
     "@s-ui/studio": "^6.10.0",
     "husky": "0.14.3",
     "validate-commit-msg": "2.14.0"
