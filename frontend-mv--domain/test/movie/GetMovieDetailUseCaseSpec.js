@@ -13,7 +13,7 @@ describe('GetDetailMovieUseCase', function() {
   })
 
   it('#execute', async () => {
-    const useCase = domain.get('get_movie_detail_use_case')
+    const useCase = domain.get('get_detail_movie_use_case')
     expect(useCase).to.exist
     expect(useCase.execute).to.be.a('function')
     const movie = await useCase.execute({id})
@@ -22,7 +22,7 @@ describe('GetDetailMovieUseCase', function() {
   })
 
   it('#execute with notFound', () => {
-    const useCase = domain.get('get_movie_detail_use_case')
+    const useCase = domain.get('get_detail_movie_use_case')
     expect(useCase).to.exist
     expect(useCase.execute).to.be.a('function')
     return useCase

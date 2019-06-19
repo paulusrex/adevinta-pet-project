@@ -1,0 +1,14 @@
+@import '~@schibstedspain/sui-theme/lib/index';
+@import '~@s-ui/react-atom-input/lib/index';
+@import '~@s-ui/react-atom-card/lib/index';
+
+.mv-MovieSearch {
+  padding: $p-xl;
+
+  &-item {
+    height: 150px;
+    &Image {
+      width: 100%;
+    }
+  }
+}

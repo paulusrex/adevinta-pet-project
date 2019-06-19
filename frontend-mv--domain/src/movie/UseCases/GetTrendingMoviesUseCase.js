@@ -7,6 +7,6 @@ export default class GetTrendingMoviesUseCase extends UseCase {
   }
   async execute() {
     const movieListValueObject = await this._repository.getTrending()
-    return movieListValueObject.toJSON()
+    return {list: movieListValueObject.toJSON()}
   }
 }

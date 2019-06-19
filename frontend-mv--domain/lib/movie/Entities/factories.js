@@ -4,10 +4,14 @@ var MoviesEntitiesFactories = function MoviesEntitiesFactories() {};
 
 MoviesEntitiesFactories.movieEntity = function (_ref) {
   var id = _ref.id,
-      title = _ref.title;
+      title = _ref.title,
+      image = _ref.image,
+      description = _ref.description;
   return new MovieEntity({
     id: id,
-    title: title
+    title: title,
+    image: image,
+    description: description
   });
 };
 

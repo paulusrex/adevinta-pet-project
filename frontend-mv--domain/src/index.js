@@ -6,7 +6,7 @@ import MovieUseCasesFactory from './movie/UseCases/factories'
 const config = new Config()
 
 const useCases = {
-  get_movie_detail_use_case: MovieUseCasesFactory.getDetailMovieUseCase({
+  get_detail_movie_use_case: MovieUseCasesFactory.getDetailMovieUseCase({
     config
   }),
   search_movies_use_case: MovieUseCasesFactory.searchMoviesUseCase({config}),

@@ -8,6 +8,6 @@ export default class SearchMoviesUseCase extends UseCase {
   }
   async execute({keyword}) {
     const movieListValueObject = await this._repository.search({keyword})
-    return movieListValueObject.toJSON()
+    return {list: movieListValueObject.toJSON()}
   }
 }

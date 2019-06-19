@@ -15,6 +15,14 @@ function (_ValueObject) {
     return _this;
   }
 
+  var _proto = MovieListValueObject.prototype;
+
+  _proto.toJSON = function toJSON() {
+    return this._list.map(function (movieEntity) {
+      return movieEntity.toJSON();
+    });
+  };
+
   return MovieListValueObject;
 }(ValueObject);
 

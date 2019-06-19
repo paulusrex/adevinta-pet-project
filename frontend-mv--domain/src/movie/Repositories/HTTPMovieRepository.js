@@ -1,4 +1,4 @@
-import MovieRepository from './movieRepository'
+import MovieRepository from './MovieRepository'
 
 export default class HTTPMovieRepository extends MovieRepository {
   constructor({
@@ -24,7 +24,12 @@ export default class HTTPMovieRepository extends MovieRepository {
     const {data} = await this._fetcher.get(
       `${API_HOST}/search/movie?api_key=${API_KEY}&query=${keyword}`
     )
-    const {results} = data
+    const results = data.results.map(res => ({
+      id: res.id,
+      title: res.title,
+      image: res.poster_path,
+      description: res.overview
+    }))
     const movieListValueObject = this._movieListValueObjectFactory({
       list: results
     })
@@ -37,7 +42,12 @@ export default class HTTPMovieRepository extends MovieRepository {
     const {data} = await this._fetcher.get(
       `${API_HOST}/movie/popular?api_key=${API_KEY}`
     )
-    const {results} = data
+    const results = data.map(res => ({
+      id: res.id,
+      title: res.title,
+      image: res.poster_path,
+      description: res.overview
+    }))
     const movieListValueObject = this._movieListValueObjectFactory({
       list: results
     })
@@ -59,7 +69,9 @@ export default class HTTPMovieRepository extends MovieRepository {
     if (data.status_code === 6) throw this._notFoundMovieErrorFactory()
     const movie = this._movieEntityFactory({
       id: data.id,
-      title: data.title
+      title: data.title,
+      image: data.poster_path,
+      description: data.overview
     })
     return movie
   }

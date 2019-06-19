@@ -1,4 +1,4 @@
-import MovieRepository from './movieRepository'
+import MovieRepository from './MovieRepository'
 
 const rawMovieList = [
   {
@@ -224,28 +224,54 @@ const rawMovieList = [
 ]
 
 export default class InMemoryMovieRepository extends MovieRepository {
-  constructor({movieListValueObjectFactory, movieEntityFactory}) {
+  constructor({
+    movieListValueObjectFactory,
+    movieEntityFactory,
+    notFoundMovieErrorFactory
+  }) {
     super()
     this._movieListValueObjectFactory = movieListValueObjectFactory
     this._movieEntityFactory = movieEntityFactory
+    this._notFoundMovieErrorFactory = notFoundMovieErrorFactory
   }
 
   async search({keyword}) {
     const movieListValueObject = this._movieListValueObjectFactory({
-      list: rawMovieList.filter(({title}) => title.includes(keyword))
+      list: rawMovieList
+        .filter(({title}) => title.includes(keyword))
+        .map(res => ({
+          id: res.id,
+          title: res.title,
+          image: res.poster_path,
+          description: res.overview
+        }))
     })
     return movieListValueObject
   }
 
   async getTrending() {
+    const list = rawMovieList.filter(() => Math.random() < 0.5).map(res => ({
+      id: res.id,
+      title: res.title,
+      image: res.poster_path,
+      description: res.overview
+    }))
+
     const movieListValueObject = this._movieListValueObjectFactory({
-      list: rawMovieList.filter(() => Math.random() < 0.5)
+      list
     })
     return movieListValueObject
   }
 
   async detail({id}) {
-    const movie = rawMovieList.find(movieItem => movieItem.id === id)
-    return movie ? this._movieEntityFactory(movie) : null
+    const res = rawMovieList.find(movieItem => movieItem.id === id)
+    const movie = {
+      id: res.id,
+      title: res.title,
+      image: res.poster_path,
+      description: res.overview
+    }
+    if (movie) return this._movieEntityFactory(movie)
+    else throw this._notFoundMovieErrorFactory()
   }
 }
