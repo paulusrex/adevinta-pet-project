@@ -42,7 +42,7 @@ export default class HTTPMovieRepository extends MovieRepository {
     const {data} = await this._fetcher.get(
       `${API_HOST}/movie/popular?api_key=${API_KEY}`
     )
-    const results = data.map(res => ({
+    const results = data.results.map(res => ({
       id: res.id,
       title: res.title,
       image: res.poster_path,
