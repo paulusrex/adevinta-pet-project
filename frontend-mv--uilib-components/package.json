@@ -33,7 +33,8 @@
   },
   "dependencies": {
     "@s-ui/react-atom-card": "^1.3.0",
-    "@s-ui/studio-utils": "^1.6.0"
+    "@s-ui/studio-utils": "^1.6.0",
+    "mv-theme": "file:../frontend-mv--uilib-theme"
   },
   "config": {
     "sui-mono": {
