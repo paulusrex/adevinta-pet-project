@@ -1,6 +1,6 @@
 {
-  "name": "movieDomain",
-  "version": "1.0.0",
+  "name": "cvz-skylab-movies",
+  "version": "1.1.0",
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "test:server": "NODE_ENV=test sui-test server",
     "test:server:watch": "npm run test:server --watch",
     "prepublish": "npm run lib",
-    "precommit": "sui-precommit run",
+    "precommit": "true",
     "commitmsg": "validate-commit-msg"
   },
   "browser": {
