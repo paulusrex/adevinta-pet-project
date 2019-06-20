@@ -2,13 +2,11 @@
 @import '~@s-ui/react-atom-input/lib/index';
 @import '~@s-ui/react-atom-card/lib/index';
 
+$bg-movie-search: $c-accent-light !default;
+
 .mv-MovieSearch {
+  font-family: $ff-sans-serif;
+  background-color: $bg-movie-search;
   padding: $p-xl;
 
-  &-item {
-    height: 150px;
-    &Image {
-      width: 100%;
-    }
-  }
 }
