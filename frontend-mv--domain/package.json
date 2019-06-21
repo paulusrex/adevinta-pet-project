@@ -1,0 +1,52 @@
+{
+  "name": "cvz-skylab-movies",
+  "version": "1.1.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "co": "sui-mono commit",
+    "lib": "rm -Rf ./lib && babel ./src -d lib",
+    "lint": "sui-lint js --fix",
+    "test": "NODE_ENV=test npm run test:client && NODE_ENV=test npm run test:server",
+    "test:ci": "NODE_ENV=test ./node_modules/.bin/karma start --single-run --browsers Firefox",
+    "test:client": "NODE_ENV=test sui-test browser",
+    "test:client:watch": "npm run test:client --watch",
+    "test:server": "NODE_ENV=test sui-test server",
+    "test:server:watch": "npm run test:server --watch",
+    "prepublish": "npm run lib",
+    "precommit": "true",
+    "commitmsg": "validate-commit-msg"
+  },
+  "browser": {
+    "./test/helpers/describers/index.js": "./test/helpers/describers/clientDescribers.js"
+  },
+  "babel": {
+    "presets": [
+      "sui"
+    ]
+  },
+  "author": "Pablo Javier Rey Sobral",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "7.4.4",
+    "@s-ui/lint": "2",
+    "@s-ui/mockmock": "1",
+    "@s-ui/mono": "1",
+    "@s-ui/precommit": "2",
+    "@s-ui/test": "2",
+    "babel-preset-sui": "3",
+    "husky": "2.4.1",
+    "validate-commit-msg": "2.14.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/@s-ui/lint/eslintrc.js"
+    ]
+  },
+  "sasslintConfig": "./node_modules/@s-ui/lint/sass-lint.yml",
+  "dependencies": {
+    "@s-ui/domain": "1",
+    "@s-ui/js": "2",
+    "axios": "0.19.0"
+  }
+}

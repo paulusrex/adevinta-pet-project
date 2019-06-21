@@ -1,0 +1,16 @@
+@import '~@schibstedspain/sui-theme/lib/index';
+@import '~@s-ui/react-atom-card/lib/index';
+
+.mv-MovieSearchList {
+  &-header {
+    font-size: $fz-xl;
+    font-weight: $fw-bold;
+    margin-bottom: $m-l;
+  }
+  
+  &-item {
+    &Image {
+      width: 100%;
+    }
+  }
+}
