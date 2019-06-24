@@ -39,3 +39,10 @@ Para levantar el servidor de desarrollo
 ```
 $ npm run dev movies/search -- --link-package=../frontend-mv--domain/ --link-all
 ```
+
+
+## Versionado
+
+[André Staltz](https://staltz.com/)
+https://gitlab.com/staltz/comver
+Compatible versioning
