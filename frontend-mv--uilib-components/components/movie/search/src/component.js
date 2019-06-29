@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import SearchBox from 'mv-movie-search-box'
-import MoviesSearchList from 'mv-movie-search-list'
+import SearchBox from 'perixo20-react-movie-search-box'
+import MoviesSearchList from 'perixo20-react-movie-search-list'
 import AtomSpinner from '@s-ui/react-atom-spinner'
 
 class MovieSearch extends Component {

@@ -1,6 +1,6 @@
 {
-  "name": "@frontend-mv--uilib-components/sui-movie-search",
-  "version": "1.0.0",
+  "name": "perixo20-react-movie-search",
+  "version": "1.0.5",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
@@ -11,7 +11,9 @@
   "dependencies": {
     "@s-ui/component-dependencies": "1",
     "@s-ui/react-atom-spinner": "^1.4.0",
-    "@s-ui/react-context": "^1.4.0"
+    "@s-ui/react-context": "^1.4.0",
+    "perixo20-react-movie-search-box": "^1.0.1",
+    "perixo20-react-movie-search-list": "^1.0.1"
   },
   "keywords": [],
   "author": "",
