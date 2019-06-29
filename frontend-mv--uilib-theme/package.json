@@ -1,6 +1,6 @@
 {
-  "name": "mv-theme",
-  "version": "0.0.1",
+  "name": "perixo20-mv-thm",
+  "version": "1.0.2",
   "description": "Movies Theme",
   "main": "lib/",
   "scripts": {
@@ -23,6 +23,7 @@
     "@s-ui/precommit": "2",
     "cpx": "1.5.0",
     "husky": "0.13.4",
+    "rimraf": "^2.6.3",
     "validate-commit-msg": "2.14.0"
   },
   "config": {
