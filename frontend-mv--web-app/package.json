@@ -24,13 +24,14 @@
     "@s-ui/i18n": "1",
     "@s-ui/react-initial-props": "1",
     "@schibstedspain/sui-theme": "8.50.0",
-    "cvz-react-movies-search": "^1.0.0",
     "cvz-skylab-movies": "1.1.0",
-    "cvz-skylab-theme": "1.0.0",
-    "isomorphic-fetch": "2.2.1"
+    "isomorphic-fetch": "2.2.1",
+    "perixo20-mv-thm": "^1.0.2",
+    "perixo20-react-movie-detail": "^1.0.0",
+    "perixo20-react-movie-search": "^1.0.5"
   },
   "devDependencies": {
-    "@s-ui/bundler": "^3.35.0",
+    "@s-ui/bundler": "^5.18.0",
     "@s-ui/deploy": "2",
     "@s-ui/lint": "2",
     "@s-ui/mono": "1",

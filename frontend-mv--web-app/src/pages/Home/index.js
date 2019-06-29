@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SearchMovies from 'cvz-react-movies-search'
+import SearchMovies from 'perixo20-react-movie-search'
 
 const Home = () => (
   <React.Fragment>

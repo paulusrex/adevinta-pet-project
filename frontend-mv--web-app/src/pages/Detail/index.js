@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import DetailMovie from 'cvz-react-movies-detail'
+import DetailMovie from 'perixo20-react-movie-detail'
 
 const Detail = ({id}) => (
   <React.Fragment>
