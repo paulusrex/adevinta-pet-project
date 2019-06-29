@@ -1,5 +1,5 @@
 import {DomainBuilder} from '@s-ui/studio-utils'
-import Domain from 'movieDomain'
+import Domain from 'cvz-skylab-movies'
 
 export default {
   default: {
