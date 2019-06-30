@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import {descriptorsByEnvironmentPatcher} from '@s-ui/test/lib/descriptor-environment-patcher'
-import Domain from '../../src/'
+import Domain from '../../../src'
 
 descriptorsByEnvironmentPatcher()
 
@@ -16,7 +16,8 @@ describe.client('SearchMoviesUseCase', function() {
     expect(useCase.execute).to.be.a('function')
     const movies = await useCase.execute({keyword: 'batman'})
     expect(movies)
-      .to.be.instanceOf(Array)
+      .to.have.property('list')
+      .and.to.be.instanceOf(Array)
       .and.to.have.length.greaterThan(10)
   })
 })

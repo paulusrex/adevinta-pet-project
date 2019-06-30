@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 
-import NotFoundMovieError from '../../src/movie/Errors/NotFoundMovieError'
-import Domain from '../../src/'
+import NotFoundMovieError from '../../../src/movie/Errors/NotFoundMovieError'
+import Domain from '../../../src'
 
 describe('GetDetailMovieUseCase', function() {
   let domain
