@@ -8,10 +8,12 @@ import MovieEntity from '../../../src/movie/Entities/MovieEntity'
 describe('MovieListValueObject', function() {
   const id = '1234'
   const title = 'Origin'
+  const image = 'http:.../...'
+  const description = 'test-description'
   let movieEntity, movieListValueObject
 
   before(() => {
-    movieEntity = new MovieEntity({id, title})
+    movieEntity = new MovieEntity({id, title, image, description})
     movieListValueObject = new MovieListValueObject({list: [movieEntity]})
   })
 
@@ -32,7 +34,7 @@ describe('MovieListValueObject', function() {
     })
 
     it('returns a raw object with the correct properties', () => {
-      const expected = [{id, title}]
+      const expected = [{id, title, image, description}]
       expect(movieListValueObject.toJSON()).not.to.be.instanceOf(ValueObject)
       expect(movieListValueObject.toJSON())
         .to.be.instanceOf(Array)

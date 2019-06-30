@@ -9,9 +9,11 @@ describe('MovieEntity', function() {
   let movie
   const id = '1234'
   const title = 'Origin'
+  const image = 'http:.../...'
+  const description = 'test-description'
 
   before(() => {
-    movie = new MovieEntity({id, title})
+    movie = new MovieEntity({id, title, image, description})
   })
 
   it('is a class', () => {
@@ -35,7 +37,7 @@ describe('MovieEntity', function() {
     })
 
     it('returns a raw object with the correct properties', () => {
-      const expected = {id, title}
+      const expected = {id, title, image, description}
       expect(movie.toJSON()).not.to.be.instanceOf(Entity)
       expect(movie.toJSON()).to.deep.equal(expected)
     })
