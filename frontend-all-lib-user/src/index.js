@@ -8,6 +8,12 @@ const config = new Config()
 const useCases = {
   create_user_use_case: UserUseCasesFactory.createUserUseCase({
     config
+  }),
+  authenticate_user_use_case: UserUseCasesFactory.authenticateUserUseCase({
+    config
+  }),
+  retrieve_user_use_case: UserUseCasesFactory.retrieveUserUseCase({
+    config
   })
 }
 

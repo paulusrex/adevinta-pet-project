@@ -9,9 +9,12 @@ describe('UserEntity', function() {
   let user
   const id = '1234'
   const email = 'john.doe@mail.com'
+  const authData = {token: 'test'}
+  let expected
 
   before(() => {
-    user = new UserEntity({id, email})
+    expected = {id, email, authData}
+    user = new UserEntity(expected)
   })
 
   it('is a class', () => {
@@ -35,7 +38,6 @@ describe('UserEntity', function() {
     })
 
     it('returns a raw object with the correct properties', () => {
-      const expected = {id, email}
       expect(user.toJSON()).not.to.be.instanceOf(Entity)
       expect(user.toJSON()).to.deep.equal(expected)
     })

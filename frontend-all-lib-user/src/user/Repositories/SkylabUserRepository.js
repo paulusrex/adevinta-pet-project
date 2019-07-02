@@ -6,7 +6,8 @@ export default class SkylabUserRepository extends UserRepository {
     config,
     userEntityFactory,
     genericUserErrorFactory,
-    alreadyExistUserErrorFactory
+    alreadyExistUserErrorFactory,
+    wrongCredentialsUserError
   }) {
     super()
     this._app = 'adevinta-pet'
@@ -15,16 +16,18 @@ export default class SkylabUserRepository extends UserRepository {
     this._userEntityFactory = userEntityFactory
     this._genericUserErrorFactory = genericUserErrorFactory
     this._alreadyExistUserErrorFactory = alreadyExistUserErrorFactory
+    this._wrongCredentialsUserError = wrongCredentialsUserError
   }
 
-  async create({email, password}) {
+  async create({email, password, ...userData}) {
     const API_HOST = this._config.get('API_HOST')
     const res = await this._fetcher.post(
       `${API_HOST}/user`,
       {
         username: email,
         password,
-        app: this._app
+        app: this._app,
+        ...userData
       },
       {
         headers: {
@@ -32,12 +35,63 @@ export default class SkylabUserRepository extends UserRepository {
         }
       }
     )
-    const {status, message} = res.data
+    const {status, error} = res.data
     if (status !== 'OK') {
-      if (message === 'duplicate') throw this._alreadyExistUserErrorFactory()
-      throw this._genericUserErrorFactory
+      if (/(already exists)$/.test(error))
+        throw this._alreadyExistUserErrorFactory()
+      throw this._genericUserErrorFactory()
     }
     const {id} = res.data.data
-    return this._userEntityFactory({id, email})
+
+    return this._userEntityFactory({id, email, authData: null})
+  }
+
+  async authenticate({email, password}) {
+    const API_HOST = this._config.get('API_HOST')
+    let res
+    try {
+      res = await this._fetcher.post(
+        `${API_HOST}/auth`,
+        {
+          username: email,
+          password
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+      )
+    } catch (err) {
+      throw this._genericUserErrorFactory()
+    }
+
+    const {status} = res.data
+    if (status !== 'OK') {
+      throw this._wrongCredentialsUserError()
+    }
+    const {token, id} = res.data.data
+    const authData = {id, token}
+    return authData
+  }
+
+  async retrieve({id, authData}) {
+    const API_HOST = this._config.get('API_HOST')
+    let res
+
+    try {
+      res = await this._fetcher.get(`${API_HOST}/user/${id}`, {
+        headers: {Authorization: `Bearer ${authData.token}`}
+      })
+    } catch (err) {
+      throw this._genericUserErrorFactory()
+    }
+
+    const {status} = res.data
+    if (status !== 'OK') {
+      throw this._genericUserErrorFactory
+    }
+    const {username} = res.data.data
+    return this._userEntityFactory({id, email: username, authData: null})
   }
 }

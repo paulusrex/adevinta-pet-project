@@ -4,7 +4,10 @@ export default class UserRepository extends Repository {
   create() {
     throw new Error('[UserRepository#create]')
   }
-  login() {
-    throw new Error('[UserRepository#login]')
+  authenticate() {
+    throw new Error('[UserRepository#authenticate]')
+  }
+  retrieve() {
+    throw new Error('[UserRepository#retrieve]')
   }
 }
