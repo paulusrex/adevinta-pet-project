@@ -14,6 +14,9 @@ const useCases = {
   }),
   retrieve_user_use_case: UserUseCasesFactory.retrieveUserUseCase({
     config
+  }),
+  update_user_use_case: UserUseCasesFactory.updateUserUseCase({
+    config
   })
 }
 

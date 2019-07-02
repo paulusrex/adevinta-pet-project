@@ -1,5 +1,8 @@
 import UserRepository from './UserRepository'
 
+const OK = 'OK'
+// const KO = 'KO'
+
 export default class SkylabUserRepository extends UserRepository {
   constructor({
     fetcher,
@@ -7,7 +10,8 @@ export default class SkylabUserRepository extends UserRepository {
     userEntityFactory,
     genericUserErrorFactory,
     alreadyExistUserErrorFactory,
-    wrongCredentialsUserError
+    wrongCredentialsUserErrorFactory,
+    updateUserErrorFactory
   }) {
     super()
     this._app = 'adevinta-pet'
@@ -16,10 +20,11 @@ export default class SkylabUserRepository extends UserRepository {
     this._userEntityFactory = userEntityFactory
     this._genericUserErrorFactory = genericUserErrorFactory
     this._alreadyExistUserErrorFactory = alreadyExistUserErrorFactory
-    this._wrongCredentialsUserError = wrongCredentialsUserError
+    this._wrongCredentialsUserErrorFactory = wrongCredentialsUserErrorFactory
+    this._updateUserErrorFactory = updateUserErrorFactory
   }
 
-  async create({email, password, ...userData}) {
+  async create({email, password, customData}) {
     const API_HOST = this._config.get('API_HOST')
     const res = await this._fetcher.post(
       `${API_HOST}/user`,
@@ -27,7 +32,7 @@ export default class SkylabUserRepository extends UserRepository {
         username: email,
         password,
         app: this._app,
-        ...userData
+        customData
       },
       {
         headers: {
@@ -36,14 +41,14 @@ export default class SkylabUserRepository extends UserRepository {
       }
     )
     const {status, error} = res.data
-    if (status !== 'OK') {
+    if (status !== OK) {
       if (/(already exists)$/.test(error))
         throw this._alreadyExistUserErrorFactory()
       throw this._genericUserErrorFactory()
     }
     const {id} = res.data.data
 
-    return this._userEntityFactory({id, email, authData: null})
+    return this._userEntityFactory({id, email, customData})
   }
 
   async authenticate({email, password}) {
@@ -67,8 +72,8 @@ export default class SkylabUserRepository extends UserRepository {
     }
 
     const {status} = res.data
-    if (status !== 'OK') {
-      throw this._wrongCredentialsUserError()
+    if (status !== OK) {
+      throw this._wrongCredentialsUserErrorFactory()
     }
     const {token, id} = res.data.data
     const authData = {id, token}
@@ -88,10 +93,28 @@ export default class SkylabUserRepository extends UserRepository {
     }
 
     const {status} = res.data
-    if (status !== 'OK') {
+    if (status !== OK) {
       throw this._genericUserErrorFactory
     }
-    const {username} = res.data.data
-    return this._userEntityFactory({id, email: username, authData: null})
+    const {username, customData} = res.data.data
+    return this._userEntityFactory({id, email: username, customData})
+  }
+
+  async update({id, customData, authData}) {
+    const API_HOST = this._config.get('API_HOST')
+    const res = await this._fetcher.put(
+      `${API_HOST}/user/${id}`,
+      {
+        customData
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${authData.token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+    if (res.data.status !== OK) throw this._updateUserErrorFactory()
+    return true
   }
 }

@@ -12,6 +12,8 @@ export default class UserRepositoriesFactories {
       fetcher: FetcherFactory.httpFetcher({config}),
       genericUserErrorFactory: UserErrorFactories.genericUserError,
       alreadyExistUserErrorFactory: UserErrorFactories.alreadyExistUserError,
-      wrongCredentialsUserError: UserErrorFactories.wrongCredentialsUserError
+      wrongCredentialsUserErrorFactory:
+        UserErrorFactories.wrongCredentialsUserError,
+      updateUserErrorFactory: UserErrorFactories.updateUserError
     })
 }

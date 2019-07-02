@@ -8,6 +8,7 @@ describe('RetrieveUserUseCase', function() {
   let domain
   let email
   const password = '123'
+  const customData = {favs: []}
 
   beforeEach(() => {
     domain = new Domain()
@@ -18,7 +19,7 @@ describe('RetrieveUserUseCase', function() {
     const config = new Config()
     const repository = repositoryFactories.skylabUserRepository({config})
 
-    const user = await repository.create({email, password})
+    const user = await repository.create({email, password, customData})
 
     const authData = await repository.authenticate({email, password})
 
@@ -30,6 +31,6 @@ describe('RetrieveUserUseCase', function() {
       authData
     })
     expect(res.email).to.be.equal(email)
-    expect(res.authData).to.be.null
+    expect(res.customData).to.be.deep.equal(customData)
   })
 })

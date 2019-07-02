@@ -5,8 +5,12 @@ export default class CreateUserUseCase extends UseCase {
     super()
     this._repository = repository
   }
-  async execute({email, password}) {
-    const userEntity = await this._repository.create({email, password})
+  async execute({email, password, customData}) {
+    const userEntity = await this._repository.create({
+      email,
+      password,
+      customData
+    })
     return userEntity.toJSON()
   }
 }

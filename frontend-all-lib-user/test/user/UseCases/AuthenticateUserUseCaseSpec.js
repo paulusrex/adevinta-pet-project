@@ -7,6 +7,7 @@ import Config from '../../../src/Config'
 import WrongCredentialsUserError from '../../../src/user/Errors/WrongCredentialsUserError'
 
 describe('AuthenticateUserUseCase', function() {
+  this.timeout(5000)
   let domain
   let email
   const password = '123'

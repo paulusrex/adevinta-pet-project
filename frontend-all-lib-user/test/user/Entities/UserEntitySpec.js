@@ -9,11 +9,11 @@ describe('UserEntity', function() {
   let user
   const id = '1234'
   const email = 'john.doe@mail.com'
-  const authData = {token: 'test'}
+  const customData = {favs: []}
   let expected
 
   before(() => {
-    expected = {id, email, authData}
+    expected = {id, email, customData}
     user = new UserEntity(expected)
   })
 
