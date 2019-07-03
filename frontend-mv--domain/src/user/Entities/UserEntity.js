@@ -1,4 +1,4 @@
-import _UserEntity from '../../../../frontend-all-lib-user/src/user/Entities/UserEntity'
+import _UserEntity from 'perixo20-mv-user/lib/user/Entities/UserEntity'
 
 export default class UserEntity extends _UserEntity {
   constructor({id, email, customData}) {

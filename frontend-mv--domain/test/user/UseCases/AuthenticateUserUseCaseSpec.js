@@ -4,7 +4,7 @@ import Domain from '../../../src/'
 import repositoryFactories from '../../../src/user/Repositories/factories'
 import Config from '../../../src/Config'
 
-import WrongCredentialsUserError from '../../../../frontend-all-lib-user/src/user/Errors/WrongCredentialsUserError'
+import WrongCredentialsUserError from 'perixo20-mv-user/lib/user/Errors/WrongCredentialsUserError'
 
 describe('AuthenticateUserUseCase', function() {
   this.timeout(5000)

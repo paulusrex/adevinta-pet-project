@@ -1,7 +1,7 @@
 import {FetcherFactory} from '@s-ui/domain'
 import UserEntityFactories from '../Entities/factories'
 
-import SkylabUserRepository from '../../../../frontend-all-lib-user/src/user/Repositories/SkylabUserRepository'
+import SkylabUserRepository from 'perixo20-mv-user/lib/user/Repositories/SkylabUserRepository'
 import UserErrorFactories from '../Errors/factories'
 
 export default class UserRepositoriesFactories {

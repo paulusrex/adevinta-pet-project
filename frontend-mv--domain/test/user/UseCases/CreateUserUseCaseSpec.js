@@ -4,7 +4,7 @@ import Domain from '../../../src/'
 import repositoryFactories from '../../../src/user/Repositories/factories'
 import Config from '../../../src/Config'
 
-import AlreadyExistUserError from '../../../../frontend-all-lib-user/src/user/Errors/AlreadyExistUserError'
+import AlreadyExistUserError from 'perixo20-mv-user/lib/user/Errors/AlreadyExistUserError'
 
 describe('CreateUserUseCase', function() {
   let domain

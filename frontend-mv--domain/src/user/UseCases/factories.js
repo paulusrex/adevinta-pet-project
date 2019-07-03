@@ -1,8 +1,8 @@
 import UserRepositoriesFactories from '../Repositories/factories'
-import CreateUserUseCase from '../../../../frontend-all-lib-user/src/user/UseCases/CreateUserUseCase'
-import AuthenticateUserUseCase from '../../../../frontend-all-lib-user/src/user/UseCases/AuthenticateUserUseCase'
-import RetrieveUserUseCase from '../../../../frontend-all-lib-user/src/user/UseCases/RetrieveUserUseCase'
-import UpdateUserUseCase from '../../../../frontend-all-lib-user/src/user/UseCases/UpdateUserUseCase'
+import CreateUserUseCase from 'perixo20-mv-user/lib/user/UseCases/CreateUserUseCase'
+import AuthenticateUserUseCase from 'perixo20-mv-user/lib/user/UseCases/AuthenticateUserUseCase'
+import RetrieveUserUseCase from 'perixo20-mv-user/lib/user/UseCases/RetrieveUserUseCase'
+import UpdateUserUseCase from 'perixo20-mv-user/lib/user/UseCases/UpdateUserUseCase'
 
 export default class UserUseCasesFactories {
   static createUserUseCase = ({config}) =>
