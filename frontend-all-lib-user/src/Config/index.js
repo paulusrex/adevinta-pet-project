@@ -1,7 +1,7 @@
 export default class Config {
   constructor() {
     this._config = {
-      API_HOST: 'https://skylabcoders.herokuapp.com/api',
+      USER_API_HOST: 'https://skylabcoders.herokuapp.com/api'
     }
   }
   get(key) {

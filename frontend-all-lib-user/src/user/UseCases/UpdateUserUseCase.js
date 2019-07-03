@@ -5,7 +5,11 @@ export default class UpdateUserUseCase extends UseCase {
     super()
     this._repository = repository
   }
-  async execute({id, customData, authData}) {
-    return this._repository.update({id, customData, authData})
+  async execute({user, authData}) {
+    return this._repository.update({
+      id: user._id,
+      customData: user._customData,
+      authData
+    })
   }
 }

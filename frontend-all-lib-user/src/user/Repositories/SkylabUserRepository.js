@@ -25,7 +25,7 @@ export default class SkylabUserRepository extends UserRepository {
   }
 
   async create({email, password, customData}) {
-    const API_HOST = this._config.get('API_HOST')
+    const API_HOST = this._config.get('USER_API_HOST')
     const res = await this._fetcher.post(
       `${API_HOST}/user`,
       {
@@ -52,7 +52,7 @@ export default class SkylabUserRepository extends UserRepository {
   }
 
   async authenticate({email, password}) {
-    const API_HOST = this._config.get('API_HOST')
+    const API_HOST = this._config.get('USER_API_HOST')
     let res
     try {
       res = await this._fetcher.post(
@@ -81,7 +81,7 @@ export default class SkylabUserRepository extends UserRepository {
   }
 
   async retrieve({id, authData}) {
-    const API_HOST = this._config.get('API_HOST')
+    const API_HOST = this._config.get('USER_API_HOST')
     let res
 
     try {
@@ -101,7 +101,7 @@ export default class SkylabUserRepository extends UserRepository {
   }
 
   async update({id, customData, authData}) {
-    const API_HOST = this._config.get('API_HOST')
+    const API_HOST = this._config.get('USER_API_HOST')
     const res = await this._fetcher.put(
       `${API_HOST}/user/${id}`,
       {

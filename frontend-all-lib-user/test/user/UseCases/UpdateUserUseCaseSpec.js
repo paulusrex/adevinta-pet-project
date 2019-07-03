@@ -1,7 +1,8 @@
 import {expect} from 'chai'
 
 import Domain from '../../../src/'
-import repositoryFactories from '../../../src/user/Repositories/factories'
+import RepositoryFactories from '../../../src/user/Repositories/factories'
+import UserEntitiesFactories from '../../../src/user/Entities/factories'
 import Config from '../../../src/Config'
 
 describe('UpdateUserUseCase', function() {
@@ -19,21 +20,24 @@ describe('UpdateUserUseCase', function() {
 
   it('#execute', async () => {
     const config = new Config()
-    const repository = repositoryFactories.skylabUserRepository({config})
+    const repository = RepositoryFactories.skylabUserRepository({config})
 
     const user = await repository.create({email, password, customData})
+    const {id} = user.toJSON()
 
-    debugger // eslint-disable-line
     const authData = await repository.authenticate({email, password})
 
     const useCase = domain.get('update_user_use_case')
     expect(useCase).to.exist
     expect(useCase.execute).to.be.a('function')
-    const {id} = user.toJSON()
-    const res = await useCase.execute({
-      id,
-      authData,
+    debugger // eslint-disable-line
+    const userModified = UserEntitiesFactories.userEntity({
+      ...user.toJSON(),
       customData: expectedCustomData
+    })
+    const res = await useCase.execute({
+      user: userModified,
+      authData
     })
     expect(res).to.be.true
 
