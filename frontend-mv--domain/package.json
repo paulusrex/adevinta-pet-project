@@ -1,5 +1,5 @@
 {
-  "name": "perixo20-mv-domain",
+  "name": "perixo20-movies-domain",
   "version": "1.2.0",
   "description": "",
   "main": "./lib/index.js",
